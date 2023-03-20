@@ -1,0 +1,72 @@
+* {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif, sans-serif;
+  }
+  
+  body {
+    margin: 0;
+    background-color: #f1f1f1;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    font-size: large;
+  }
+  
+  /* Style the top navigation bar */
+  .topnav {
+    overflow: hidden;
+    background-color: royalblue;
+    font-size: larger;
+  }
+  
+  /* Style the topnav links */
+  .topnav a {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+  
+  /* Change color on hover */
+  .topnav a:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  
+  /* Style the content */
+  .content {
+    background-color: lightyellow;
+    padding: 10px;
+    min-height: 100mm;
+  }
+  
+  /* Style the footer */
+  .footer {
+    color: #f1f1f1;
+    background-color: royalblue;
+    padding: 10px;
+    line-height: 8px;
+  }
+
+  .table {
+    width: 100%;
+    color:midnightblue;
+    border-collapse: collapse;
+  }
+
+  .table td {
+    border:3px solid rgb(141, 163, 230);
+  }
+
+  .table th{
+    color:black;
+    border:3px solid  rgb(141, 163, 230);
+  }
+
+  .button {
+    font-size: larger;
+    color: #f1f1f1;
+    border: none;
+    background-color: royalblue;
+    margin: 6px;
+  }
