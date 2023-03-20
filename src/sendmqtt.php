@@ -28,17 +28,11 @@ if(isset($name))
         $meta_enc = file_get_contents($dir_name . "/meta.json", FALSE, NULL, 0, 50);
         $meta_dec = json_decode($meta_enc);
         $comment = $meta_dec->comment;
-        $fota_content = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 0, NULL);
-        $fota_size = strlen($fota_content);
+        $fota_header = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 0, 176);
         $version = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 48, 32);
         $project = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 80, 32);
-        $time = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 112, 16);
-        $date = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 128, 16);
         echo "<tr><td>Prosjekt</td><td>$project</td></tr>";
         echo "<tr><td>Version</td><td>$version</td></tr>";
-        echo "<tr><td>Build date</td><td>$date</td></tr>";
-        echo "<tr><td>Build time</td><td>$time</td></tr>";
-        echo "<tr><td>Image size</td><td>$fota_size</td></tr>";
     }else{
         echo "<tr><td>Har ikke innhold</td><td>??</td></tr>";
     }
@@ -47,7 +41,17 @@ if(isset($name))
     echo "<p>No image??</p>";
 }
 
-echo "<p><a href=sendmqtt.php?image=" . $name . ">Send MQTT message announcing FOTA " . $name . " being available for download.</a>"
+
+$server   = 'localhost';
+$port     = 1883;
+$clientId = 'test-publisher';
+
+$mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
+$mqtt->connect();
+$mqtt->publish('hxfota', $fota_header, 0);
+$mqtt->disconnect();
+
+echo "<p><a href=details.php?image=" . $name . ">Back to FOTA " . $name . " details.</a></p>";
 
 ?>
 </div>
