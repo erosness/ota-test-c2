@@ -21,9 +21,12 @@ echo "<tr><th style=\"width:200px\">Name</th><th>Comment</th><th style=\"width:1
 
 $name = $_GET["image"];
 
+
 if(isset($name))
 {
     echo "<tr><td>Har innhold</td><td>XX</td></tr>";
+}else{
+    echo "<tr><td>No image??</td></tr>"
 }
 
 $server   = 'localhost';
