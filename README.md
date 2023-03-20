@@ -1,2 +1,3 @@
-# ota-test-c2
-Temporary OTA server for connect2 project, to be used for testing. 
+# collector_1
+
+Repository for first internal learning attempt og the "collector": Collecting data from remote stations and present them anyewhare.
