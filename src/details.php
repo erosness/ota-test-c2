@@ -13,6 +13,7 @@
   <h2>Send MQTT</h2>
 <?php
 
+require __DIR__ . '/../vendor/autoload.php';
 
 echo "<table class=table>";
 echo "<tr><th style=\"width:200px\">Name</th><th>Comment</th><th style=\"width:100px\">App version</th><th style=\"width:100px\">Data</th><th style=\"width:100px\">Time</th> </tr>";
@@ -31,8 +32,9 @@ $clientId = 'test-publisher';
 
 $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
 $mqtt->connect();
-$mqtt->publish('php-mqtt/client/test', 'Hello World!', 0);
+$mqtt->publish('hxfota', 'Hello? World?', 0);
 $mqtt->disconnect();
+
 echo "</table>";
 
 ?>
