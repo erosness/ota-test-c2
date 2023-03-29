@@ -28,7 +28,7 @@ if(isset($name))
         $meta_enc = file_get_contents($dir_name . "/meta.json", FALSE, NULL, 0, 50);
         $meta_dec = json_decode($meta_enc);
         $comment = $meta_dec->comment;
-        $fota_header = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 0, 176);
+        $fota_header = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 0, 176 + 32 + (20 * 4)  );
         $version = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 48, 32);
         $project = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 80, 32);
         echo "<tr><td>Prosjekt</td><td>$project</td></tr>";
@@ -45,10 +45,11 @@ if(isset($name))
 $server   = 'localhost';
 $port     = 1883;
 $clientId = 'test-publisher';
+$url = "https://localhost:9002/image/leif/Connected2.bin";
 
 $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
 $mqtt->connect();
-$mqtt->publish('hxfota', $fota_header, 0);
+$mqtt->publish('hxfota', $fota_header . $url . "\000", 0);
 $mqtt->disconnect();
 
 echo "<p><a href=details.php?image=" . $name . ">Back to FOTA " . $name . " details.</a></p>";
