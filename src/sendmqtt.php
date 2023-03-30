@@ -42,7 +42,7 @@ if(isset($name))
 }
 
 
-$server   = 'conneceted2.rosness.no';
+$server   = 'connected2.rosness.no';
 $port     = 1883;
 $clientId = 'test-publisher';
 $url = "https://" . $server . "/connected2/images/" . $name . "/Connected2.bin";
