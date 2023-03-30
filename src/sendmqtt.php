@@ -42,10 +42,10 @@ if(isset($name))
 }
 
 
-$server   = 'localhost';
+$server   = 'conneceted2.rosness.no';
 $port     = 1883;
 $clientId = 'test-publisher';
-$url = "https://localhost:9002/image/leif/Connected2.bin";
+$url = "https://" . $server . "/connected2/images/" . $name . "/Connected2.bin";
 
 $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
 $mqtt->connect();
