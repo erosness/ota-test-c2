@@ -46,6 +46,12 @@ $server   = 'connected2.rosness.no';
 $port     = 1883;
 $clientId = 'test-publisher';
 $url = "https://" . $server . "/connected2/images/" . $name . "/Connected2.bin";
+$len = strlen($url);
+for($ix = $len+1; $ix < 96; $ix++){
+  $url[$ix] = "\000";
+}
+$len = strlen($url);
+
 
 $mqtt = new \PhpMqtt\Client\MqttClient($server, $port, $clientId);
 $mqtt->connect();
