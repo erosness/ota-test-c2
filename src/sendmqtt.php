@@ -47,7 +47,7 @@ $port     = 1883;
 $clientId = 'test-publisher';
 $url = "https://" . $server . "/connected2/images/" . $name . "/Connected2.bin";
 $len = strlen($url);
-for($ix = $len+1; $ix < 96; $ix++){
+for($ix = $len; $ix < 96; $ix++){
   $url[$ix] = "\000";
 }
 $len = strlen($url);
