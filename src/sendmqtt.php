@@ -28,11 +28,13 @@ if(isset($name))
         $meta_enc = file_get_contents($dir_name . "/meta.json", FALSE, NULL, 0, 50);
         $meta_dec = json_decode($meta_enc);
         $comment = $meta_dec->comment;
+        $mqtt_version = $meta_dec->version;
         $fota_header = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 0, 176 + 32 + (20 * 4)  );
         $version = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 48, 32);
         $project = file_get_contents($dir_name . "/Connected2.bin", FALSE, NULL, 80, 32);
         echo "<tr><td>Prosjekt</td><td>$project</td></tr>";
-        echo "<tr><td>Version</td><td>$version</td></tr>";
+        echo "<tr><td>MQTT version</td><td>$mqtt_version</td></tr>";
+        echo "<tr><td>Image version</td><td>$version</td></tr>";
     }else{
         echo "<tr><td>Har ikke innhold</td><td>??</td></tr>";
     }
@@ -48,6 +50,11 @@ $clientId = 'test-publisher';
 $url = "https://" . $server . "/connected2/images/" . $name . "/Connected2.bin";
 $len = strlen($url);
 for($ix = $len; $ix < 96; $ix++){
+  $url[$ix] = "\000";
+}
+$url = $url . $mqtt_version;
+$len = strlen($url);
+for($ix = $len; $ix < 128; $ix++){
   $url[$ix] = "\000";
 }
 $len = strlen($url);
